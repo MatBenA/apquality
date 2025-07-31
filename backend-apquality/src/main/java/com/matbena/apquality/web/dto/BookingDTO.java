@@ -2,8 +2,10 @@ package com.matbena.apquality.web.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
-public record BookingDTO(LocalDateTime createdAt,
+public record BookingDTO(Long id,
+                         LocalDateTime createdAt,
                          LocalDateTime updatedAt,
                          LocalDateTime bookedTime,
                          BigDecimal totalPrice,
@@ -11,8 +13,8 @@ public record BookingDTO(LocalDateTime createdAt,
                          String clientName,
                          String clientAddress,
                          String clientPhone,
-                         String manager,
-                         String bookingType,
-                         BigDecimal extraFee,
-                         ServiceDTO serviceList) {
+                         String state,
+                         SelectOptionDTO manager,
+                         BookingTypeDTO bookingType,
+                         List<SalonServiceDTO> salonServiceList) {
 }

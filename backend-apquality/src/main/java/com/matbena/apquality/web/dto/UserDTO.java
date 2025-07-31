@@ -6,6 +6,5 @@ public record UserDTO(String firstname,
                       String lastName,
                       String email,
                       Boolean isAvailable,
-                      String role,
-                      List<String> permissionsList) {
+                      RoleDTO role) {
 }

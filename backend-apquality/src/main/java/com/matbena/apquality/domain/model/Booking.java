@@ -34,6 +34,10 @@ public class Booking {
     private String clientPhone;
 
     @ManyToOne
+    @JoinColumn(name = "state_id")
+    private State state;
+
+    @ManyToOne
     @JoinColumn(name = "manager_id")
     private UserSec manager;
 
@@ -47,5 +51,5 @@ public class Booking {
             joinColumns = @JoinColumn(name = "booking_id"),
             inverseJoinColumns = @JoinColumn(name = "service_id")
     )
-    private List<Service> serviceList = new ArrayList<>();
+    private List<SalonService> salonServiceList = new ArrayList<>();
 }
