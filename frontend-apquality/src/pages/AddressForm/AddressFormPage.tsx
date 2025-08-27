@@ -1,42 +1,19 @@
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { CustomInput } from "@/components/CustomInput";
+import { Button } from "@/components/ui/button";
+import { Form } from "@/components/ui/form";
+import { addressSchema, type ClientData } from "@/models/ClientDataModel";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import z from "zod";
-
-const addressSchema = z.object({
-  name: z
-    .string()
-    .min(1, "El nombre es obligatorio")
-    .max(50, "El nombre no debe superar los 50 caracteres"),
-  phone: z
-    .string()
-    .regex(/^[0-9]+$/, "El teléfono solo debe contener números")
-    .min(8, "El teléfono debe tener como mínimo 8 dígitos")
-    .max(15, "El teléfono no puede tener más de 15 dígitos"),
-  address: z
-    .string()
-    .min(5, "La dirección debe tener al menos 5 caracteres")
-    .max(200, "La direccion no debe superar los 200 caracteres"),
-});
-
-type ClientData = z.infer<typeof addressSchema>;
 
 export const AddressFormPage = () => {
   const clientDataForm = useForm<ClientData>({
     resolver: zodResolver(addressSchema),
+    mode: "onBlur",
     defaultValues: {
       name: "",
       phone: "",
       address: "",
+      details: "",
     },
   });
 
@@ -45,27 +22,41 @@ export const AddressFormPage = () => {
   };
 
   return (
-    <div>
-      <Form {...clientDataForm}>
-        <form>
-          <FormField
-            control={clientDataForm.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Nombre</FormLabel>
-                <FormControl>
-                  <Input placeholder="" {...field} />
-                </FormControl>
-                <FormDescription>
-                  Con este nombre podemos identificarlo
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </form>
-      </Form>
+    <div className="flex justify-center p-5">
+      <div className="flex flex-col w-full max-w-xl">
+        <Form {...clientDataForm}>
+          <form onSubmit={clientDataForm.handleSubmit(onSubmit)} className="gap-5">
+            <CustomInput
+              name={"name"}
+              label="Nombre"
+              placeholder="Ingrese su nombre"
+              description="Con este nombre podemos identificarlo"
+              control={clientDataForm.control}
+            />
+            <CustomInput
+              name={"phone"}
+              label="Telefono"
+              placeholder="555-555-5555"
+              description="Con su contacto podremos comunicarnos con usted"
+              control={clientDataForm.control}
+            />
+            <CustomInput
+              name={"address"}
+              label="Dirección"
+              placeholder="Calle x N 5555 Primer piso, departamento A"
+              description="Necesitamos su direccion para ubicarlo"
+              control={clientDataForm.control}
+            />
+            <CustomInput
+              name={"details"}
+              label="Detalles (opcional)"
+              description="Cualquier dato extra"
+              control={clientDataForm.control}
+            />
+            <Button type="submit">Enviar</Button>
+          </form>
+        </Form>
+      </div>
     </div>
   );
 };

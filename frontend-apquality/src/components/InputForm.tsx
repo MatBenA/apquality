@@ -2,9 +2,10 @@ import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Controller, type Control, type FieldError } from "react-hook-form";
 import type { LoginValues } from "@/models/LoginModel";
+import type { z, ZodObject } from "zod";
 
 interface Props {
-  name: keyof LoginValues
+  name: z.infer<typeof ZodObject>
   control: Control<LoginValues>
   label: string
   type?: string

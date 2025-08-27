@@ -16,12 +16,12 @@ export const AppRouter = () => {
       <RoutesWithNotFound>
         <Route path="/" element={<Navigate to="/reserva/ubicacion" />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/reserva/ubicacion" element={<SelectLocationPage />}/>
-        <Route path="/reserva/horafecha" element={<SelectDatePage />}/>
-        <Route path="/reserva/servicios" element={<SelectServicesPage />}/>
-        <Route path="/reserva/resumen" element={<SummaryPage/>}/>
-        <Route path="/reserva/confirmacion" element={<ConfirmationPage/>}/>
-        <Route path="/reserva/direccion" element={<AddressFormPage/>}/>
+        <Route path="/reserva/ubicacion" element={<SelectLocationPage />} />
+        <Route path="/reserva/horafecha" element={<SelectDatePage />} />
+        <Route path="/reserva/servicios" element={<SelectServicesPage />} />
+        <Route path="/reserva/resumen" element={<SummaryPage />} />
+        <Route path="/reserva/confirmacion" element={<ConfirmationPage />} />
+        <Route path="/reserva/direccion" element={<AddressFormPage />} />
         <Route element={<PrivateGuard />}>
           <Route path="/private/*" element={<PrivateRouter />} />
         </Route>

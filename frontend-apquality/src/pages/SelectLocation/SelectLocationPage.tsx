@@ -15,7 +15,7 @@ export const SelectLocationPage = () => {
             <CardDescription>Vení a nuestro local y relajate</CardDescription>
           </CardHeader>
         </Card>
-        <Card className="cursor-pointer hover:bg-secondary/90" onClick={() => navigate("/")}>
+        <Card className="cursor-pointer hover:bg-secondary/90" onClick={() => navigate("/reserva/direccion")}>
           <CardHeader>
             <CardTitle>🏠 A Domicilio</CardTitle>
             <CardDescription>Te visitamos en tu casa</CardDescription>
